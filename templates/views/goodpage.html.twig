@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}TinyStore - {{ good.name }}{% endblock %}
+{% block body %}
+{#    <h1>{{ good.name }}</h1>#}
+{#    <ul>#}
+{#        <li><small>{{ category }}</small></li>#}
+{#        <li>{{ good.name }}</li>#}
+{#        <li>{{ good.image }}</li>#}
+{#        <li>{{ good.price }}</li>#}
+{#        <li>{{ good.description }}</li>#}
+{#    </ul>#}
+{#    <a href="{{ path('cart_logic', {id: good.id}) }}">Add to cart</a>#}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="mt-4 mt-md-0">{{ good.name }}</h2>
+                <span class="badge bg-primary" style="font-size: 1.25rem">{{ good.price/100 }} UAH</span>
+                <hr>
+                <span class="badge bg-warning text-dark" style="font-size: 1.25rem">Description</span>
+                <p class="mt-1">
+                    {{ good.description }}
+                </p>
+                {{ form_start(form, {'attr': {'class': 'p-3 bg-light'}}) }}
+                <div class="form-group mb-2">
+                    {{ form_label(form.amount) }}
+                    <div style="width: 75px">
+                        {{ form_widget(form.amount, {
+                            'attr': {
+                                'class': 'form-control ' ~ (form.amount.vars.valid ? '' : 'is-invalid')
+                            }
+                        }) }}
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.amount) }}
+                    </div>
+                </div>
+                {{ form_widget(form.add, {'attr': {'class': 'btn btn-warning w-25'}}) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

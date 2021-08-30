@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TinyShop - Cart{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <h2>Your Cart</h2>
+        {% if cart.goodOrders.count > 0 %}
+            <div class="row mt-3">
+                <!-- List of items -->
+                <div class="col-md-8">
+                    {{ form_start(form) }}
+                    <div class="card">
+                        <div class="card-header bg-dark text-white d-flex">
+                            <div class="ml-auto">
+                                {{ form_widget(form.save, {'attr': {'class': 'btn btn-warning'}}) }}
+                                {{ form_widget(form.clear, {'attr': {'class': 'btn btn-light'}}) }}
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for goodOrder in form.goodOrders %}
+                                <li class="list-group-item d-flex">
+                                    <div class="flex-fill mr-2">
+                                        <img src="https://via.placeholder.com/320x240" width="125" alt="Product image">
+                                    </div>
+                                    <div class="flex-fill mr-2">
+                                        <h5 class="mt-0 mb-0">{{ goodOrder.vars.data.idgood.name }}</h5>
+                                        <small>{{ goodOrder.vars.data.idgood.description[:50] }}...</small>
+                                        <div class="form-inline mt-2">
+                                            <div class="form-group mb-2 mr-2" style="width: 75px;">
+                                                {{ form_widget(goodOrder.amount, {
+                                                    'attr': {
+                                                        'class': 'form-control form-control-sm ' ~ (goodOrder.amount.vars.valid ? '' : 'is-invalid')
+                                                    }
+                                                }) }}
+                                                <div class="invalid-feedback">
+                                                    {{ form_errors(goodOrder.amount) }}
+                                                </div>
+                                            </div>
+                                            {{ form_widget(goodOrder.remove, {'attr': {'class': 'btn btn-dark btn-sm'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="flex-fill mr-2 text-right">
+                                        <span class="badge bg-primary" style="font-size: 1.1rem">{{ goodOrder.vars.data.idgood.price/100 }} UAH</span>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+{#                    Вам нужно добавить _token в свою форму, т.е.#}
+{#                    {{ form_row(form._token) }}#}
+{#                    На данный момент в вашей форме отсутствует поле токена CSRF. Если вы используете функции формы веточки для визуализации вашей формы,#}
+{#                    как form(form)это, автоматически будет отображаться поле токена CSRF для вас, но ваш код показывает, что вы визуализируете свою#}
+{#                    форму с помощью необработанного HTML-кода <form></form>, поэтому вам нужно вручную визуализировать поле.#}
+{#                    Или просто добавьте {{ form_rest(form) }}перед закрывающим тегом формы.#}
+                    {{ form_rest(form) }}
+                    {{ form_end(form, {'render_rest': false}) }}
+                </div>
+                <!-- Summary -->
+                <div class="col-md-4">
+                    <div class="card mt-4 mt-md-0">
+                        <h5 class="card-header bg-dark text-white">Summary</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div><b>Total</b></div>
+                                <span><b>{{ cart.total }} €</b></span>
+                            </li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="btn btn-warning w-100">Checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                Your cart is empty. Go to the <a href="{{ path('index_page') }}">product list</a>.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
