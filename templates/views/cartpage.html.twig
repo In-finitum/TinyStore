@@ -24,8 +24,8 @@
                                         <img src="https://via.placeholder.com/320x240" width="125" alt="Product image">
                                     </div>
                                     <div class="flex-fill mr-2">
-                                        <h5 class="mt-0 mb-0">{{ goodOrder.vars.data.idgood.name }}</h5>
-                                        <small>{{ goodOrder.vars.data.idgood.description[:50] }}...</small>
+                                        <h5 class="mt-0 mb-0">{{ goodOrder.vars.data.good.name }}</h5>
+                                        <small>{{ goodOrder.vars.data.good.description[:50] }}...</small>
                                         <div class="form-inline mt-2">
                                             <div class="form-group mb-2 mr-2" style="width: 75px;">
                                                 {{ form_widget(goodOrder.amount, {
@@ -41,7 +41,7 @@
                                         </div>
                                     </div>
                                     <div class="flex-fill mr-2 text-right">
-                                        <span class="badge bg-primary" style="font-size: 1.1rem">{{ goodOrder.vars.data.idgood.price/100 }} UAH</span>
+                                        <span class="badge bg-primary" style="font-size: 1.1rem">{{ goodOrder.vars.data.good.price/100 }} UAH</span>
                                     </div>
                                 </li>
                             {% endfor %}

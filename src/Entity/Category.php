@@ -25,7 +25,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Good::class, mappedBy="idcategory")
+     * @ORM\OneToMany(targetEntity=Good::class, mappedBy="category")
      */
     private $goods;
 
@@ -63,7 +63,7 @@ class Category
     {
         if (!$this->goods->contains($good)) {
             $this->goods[] = $good;
-            $good->setIdcategory($this);
+            $good->setCategory($this);
         }
 
         return $this;
@@ -73,8 +73,8 @@ class Category
     {
         if ($this->goods->removeElement($good)) {
             // set the owning side to null (unless already changed)
-            if ($good->getIdcategory() === $this) {
-                $good->setIdcategory(null);
+            if ($good->getCategory() === $this) {
+                $good->setCategory(null);
             }
         }
 

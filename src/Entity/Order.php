@@ -31,7 +31,7 @@ class Order
     private $buyingdate;
 
     /**
-     * @ORM\OneToMany(targetEntity=GoodOrder::class, mappedBy="idorder", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=GoodOrder::class, mappedBy="order", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $goodOrders;
 
@@ -117,7 +117,7 @@ class Order
 //    {
 //        if (!$this->goodOrders->contains($goodOrder)) {
 //            $this->goodOrders[] = $goodOrder;
-//            $goodOrder->setIdorder($this);
+//            $goodOrder->setOrder($this);
 //        }
 //
 //        return $this;
@@ -137,7 +137,7 @@ class Order
         }
 
         $this->goodOrders[] = $goodOrder;
-        $goodOrder->setIdorder($this);
+        $goodOrder->setOrder($this);
 
         return $this;
     }
@@ -162,8 +162,8 @@ class Order
     {
         if ($this->goodOrders->removeElement($goodOrder)) {
             // set the owning side to null (unless already changed)
-            if ($goodOrder->getIdorder() === $this) {
-                $goodOrder->setIdorder(null);
+            if ($goodOrder->getOrder() === $this) {
+                $goodOrder->setOrder(null);
             }
         }
 

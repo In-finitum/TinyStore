@@ -18,8 +18,8 @@ class AddToCartType extends AbstractType
             ->add('add', SubmitType::class, [
                 'label' => 'Add to cart'
             ]);
-//            ->add('idgood')
-//            ->add('idorder')
+//            ->add('good')
+//            ->add('order')
         ;
     }
 

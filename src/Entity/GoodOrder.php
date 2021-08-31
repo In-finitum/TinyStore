@@ -34,13 +34,13 @@ class GoodOrder
      * @ORM\ManyToOne(targetEntity=Good::class, inversedBy="goodOrders")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $idgood;
+    private $good;
 
     /**
      * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="goodOrders")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $idorder;
+    private $order;
 
 
     //для того щоб не додавати повторно одні і ті самі сутності
@@ -53,7 +53,7 @@ class GoodOrder
      */
     public function equals(GoodOrder $goodOrder): bool
     {
-        return $this->getIdgood()->getId() === $goodOrder->getIdgood()->getId();
+        return $this->getGood()->getId() === $goodOrder->getGood()->getId();
     }
 
     //підрахунок загальної суми
@@ -64,7 +64,7 @@ class GoodOrder
      */
     public function getTotal(): float
     {
-        return ($this->getIdgood()->getPrice()/100) * $this->getAmount();
+        return ($this->getGood()->getPrice()/100) * $this->getAmount();
     }
 
     public function getId(): ?int
@@ -96,26 +96,26 @@ class GoodOrder
         return $this;
     }
 
-    public function getIdgood(): ?Good
+    public function getGood(): ?Good
     {
-        return $this->idgood;
+        return $this->good;
     }
 
-    public function setIdgood(?Good $idgood): self
+    public function setGood(?Good $good): self
     {
-        $this->idgood = $idgood;
+        $this->good = $good;
 
         return $this;
     }
 
-    public function getIdorder(): ?Order
+    public function getOrder(): ?Order
     {
-        return $this->idorder;
+        return $this->order;
     }
 
-    public function setIdorder(?Order $idorder): self
+    public function setOrder(?Order $order): self
     {
-        $this->idorder = $idorder;
+        $this->order = $order;
 
         return $this;
     }

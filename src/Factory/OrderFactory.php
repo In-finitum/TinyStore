@@ -38,7 +38,7 @@ class OrderFactory
     public function createItem(Good $good): GoodOrder
     {
         $goodOrder = new GoodOrder();
-        $goodOrder->setIdgood($good);
+        $goodOrder->setGood($good);
         $goodOrder->setAmount(1);
 
         return $goodOrder;

@@ -28,7 +28,7 @@
                     <div class="card mt-4" style="width: 18rem; margin-right: 20px">
                         <div class="card-body">
                             <h4 class="card-title"><a href="{{ path('good_page', {id: good.id}) }}">{{ good.name }}</a></h4>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ good.idcategory.name }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ good.category.name }}</h6>
                             <p class="card-text">{{ good.description }}</p>
                             <p class="card-text">{{ good.image }}</p>
                             <span class="badge bg-primary" style="font-size: 1.25rem">{{ good.price/100 }} UAH</span>

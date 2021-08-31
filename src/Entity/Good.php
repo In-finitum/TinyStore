@@ -33,11 +33,11 @@ class Good
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="goods")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $idcategory;
+    private $category;
 
     //додав cascade і ->...
     /**
-     * @ORM\OneToMany(targetEntity=GoodOrder::class, mappedBy="idgood")
+     * @ORM\OneToMany(targetEntity=GoodOrder::class, mappedBy="good")
      */
     private $goodOrders;
 
@@ -85,14 +85,14 @@ class Good
         return $this;
     }
 
-    public function getIdcategory(): ?Category
+    public function getCategory(): ?Category
     {
-        return $this->idcategory;
+        return $this->category;
     }
 
-    public function setIdcategory(?Category $idcategory): self
+    public function setCategory(?Category $category): self
     {
-        $this->idcategory = $idcategory;
+        $this->category = $category;
 
         return $this;
     }
@@ -109,7 +109,7 @@ class Good
     {
         if (!$this->goodOrders->contains($goodOrder)) {
             $this->goodOrders[] = $goodOrder;
-            $goodOrder->setIdgood($this);
+            $goodOrder->setGood($this);
         }
 
         return $this;
@@ -119,8 +119,8 @@ class Good
     {
         if ($this->goodOrders->removeElement($goodOrder)) {
             // set the owning side to null (unless already changed)
-            if ($goodOrder->getIdgood() === $this) {
-                $goodOrder->setIdgood(null);
+            if ($goodOrder->getGood() === $this) {
+                $goodOrder->setGood(null);
             }
         }
 

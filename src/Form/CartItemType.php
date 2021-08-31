@@ -16,8 +16,8 @@ class CartItemType extends AbstractType
 //            ->add('price')
             ->add('amount')
             ->add('remove', SubmitType::class)
-//            ->add('idgood')
-//            ->add('idorder')
+//            ->add('good')
+//            ->add('order')
         ;
     }
 

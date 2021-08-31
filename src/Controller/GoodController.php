@@ -18,7 +18,7 @@ class GoodController extends AbstractController
 //        $good = $this->getDoctrine()
 //            ->getRepository(Good::class)
 //            ->find($id);
-//        $category = $good->getIdcategory()->getName();
+//        $category = $good->getCategory()->getName();
 //        return $this->render('views/goodpage.html.twig',
 //            [
 //                'good' => $good,
@@ -31,7 +31,7 @@ class GoodController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $goodOrder = $form->getData();
-            $goodOrder->setIdgood($good);
+            $goodOrder->setGood($good);
 
             $cart = $cartManager->getCurrentCart();
             $cart
